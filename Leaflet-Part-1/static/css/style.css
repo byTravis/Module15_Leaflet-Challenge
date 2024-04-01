@@ -1,0 +1,37 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+.legend {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.legend h3 {
+  color: rgb(29, 29, 29);
+  border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+.legend li {
+  list-style: none;
+  font-size: 12px; 
+  color: rgb(29, 29, 29);
+
+}
+
+.colorBlock {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin: 0px 10px 5px 0px;
+  vertical-align: middle;
+}
