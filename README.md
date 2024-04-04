@@ -1,7 +1,7 @@
 # Module 15 - Leaflet Challenge
 *Leaflet Challenge  - Week 15 - Data Analytics Boot Camp - University of Oregon*
 
-![geoJSON & Leaflet Challenge](images/sample_map.JPG)
+![geoJSON & Leaflet Challenge](images/project_banner.png)
 
 
 ## Background
