@@ -1,32 +1,14 @@
 //  Get geoJSON Data
 let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
-let tectonicData = "static/data/PB2002_boundaries.json"
 
+
+// Sets colors for circles and legend.
 const colorScale = {
     depthScale: [10, 30, 50, 70, 90, 10000],
     color: ["#F9E0A2", "#F6D173", "#F4C145", "#F0AB00", "#EC7A08","#A30000"]
 };
 
-
-
-   ////////////Create Tectonic Plate Layer////////////
-   let tectonicPlates = new L.LayerGroup();
-
-   // Pull in the data 
-   d3.json("static/data/PB2002_boundaries.json").then(function(platedata) {
-           
-       // Add the data to the tectonicplates layer
-       L.geoJson(platedata, {
-           color: "blue", 
-           weight: 1}
-           ).addTo(tectonicPlates);
-
-       //Then add the tectonicplates layer to the map.
-       
-       tectonicPlates.addTo(myMap);
-   });
-
-
+// Gets earthquake data
 d3.json(url).then( earthquakes => {  
     createFeatures(earthquakes, colorScale);
 });
@@ -43,22 +25,25 @@ function createFeatures(earthquakes, colorScale) {
             weight: 1,
             opacity: .3,
             fillOpacity: .7
-        }).bindPopup(`<h2 style="margin-bottom: 0px;"><b>${feature.properties.place}</b></h2>
-        <span style="font-size: 11px; color: grey;">${Date(feature.properties.time)}</span><hr />        
-        <b>Magnitude:</b> ${feature.properties.mag}<br />
-        <b>Depth:</b>  ${feature.geometry.coordinates[2]} km<br />
-        <a href = ${feature.properties.url} target= _blank>More Information</a>`
+        }).bindPopup(`<div class="popupCard"> 
+        <h2>${feature.properties.place}</h2>
+        <p class="popupDate">${Date(feature.properties.time)}</p>
+        <hr />
+            <ul>                        
+                <li><b>Magnitude:</b> ${feature.properties.mag}</li>
+                <li><b>Depth:</b>  ${feature.geometry.coordinates[2]} km</li>
+                <li><b>Longitude:</b>  ${feature.geometry.coordinates[0]}&deg</li>
+                <li><b>Latitude:</b>  ${feature.geometry.coordinates[1]}&deg</li>                
+            </ul>
+        <p><center><a href = ${feature.properties.url} target= _blank>More Information</a></center></p>
+        </div>`
                     );
     });
 
     var earthquakesLayer = L.layerGroup(earthquakeCircles);
 
     createMap(earthquakesLayer, colorScale);
-    // createLegend(colorScale);
 };
-
-
-
 
 
 //  Sets circle colors
@@ -70,15 +55,7 @@ function markerColor(depth, colorScale) {
             break;
         };
     };
-
-
-
 };
-
-
-
-
-
 
 
 //  Create Map Layers
@@ -96,8 +73,6 @@ function createMap(earthquakes, colorScale) {
         subdomains:['mt0','mt1','mt2','mt3']
         });
 
-
-
     let baseMaps = {Street: standard, Satellite:  satellite, Topographic:  topo, };    
     let overlayMaps = {Earthquakes: earthquakes, };
 
@@ -113,18 +88,12 @@ function createMap(earthquakes, colorScale) {
 
 
 
-
- 
-
-
-
-
     // Create legend 
     var legend = L.control({ position: "bottomright" });
 
     legend.onAdd = function (myMap) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h3 style='text-align: center'>Depth (km)</h3>";
+        div.innerHTML += "<h3>Depth (km)</h3>";
         div.innerHTML += "<ul>";
 
         for (let i = 0; i < colorScale.depthScale.length; i++) { 
@@ -141,8 +110,6 @@ function createMap(earthquakes, colorScale) {
    };
 
    legend.addTo(myMap);
-   
-   
 };
 
 
