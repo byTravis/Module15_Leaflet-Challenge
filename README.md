@@ -1,7 +1,7 @@
-# Module 15 - Leaflet Challenge
-*Leaflet Challenge  - Week 15 - Data Analytics Boot Camp - University of Oregon*
+# Module 15 - GeoJSON & Leaflet Challenge
+*GeoJSON & Leaflet Challenge  - Week 15 - Data Analytics Boot Camp - University of Oregon*
 
-![geoJSON & Leaflet Challenge](images/project_banner.png)
+![GeoJSON & Leaflet Challenge](images/project_banner.png)
 
 
 ## Background
@@ -11,8 +11,8 @@ The USGS is interested in building a new set of tools that will allow them to vi
 
 ## Instructions
 
-- Access the geojson API from USGS GeoJSON Feed(http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) using D3 to pull data from the last 7 days.
-- Create an interactive map using Leaflet(https://leafletjs.com/).
+- Access the geojson API from [USGS GeoJSON Feed](http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) using D3 to pull data from the last 7 days.
+- Create an interactive map using [Leaflet](https://leafletjs.com/).
     - Marker size corresponds to earthquake magnitude.
     - Color indiates depth.  Include a legend.
     - Marker popups include relevant information to the event.
