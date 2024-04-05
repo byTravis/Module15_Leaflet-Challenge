@@ -27,7 +27,7 @@ function createFeatures(earthquakes, colorScale) {
             fillOpacity: .7
         }).bindPopup(`<div class="popupCard"> 
         <h2>${feature.properties.place}</h2>
-        <p class="popupDate">${Date(feature.properties.time)}</p>
+        <p class="popupDate">${new Date(feature.properties.time)}</p>
         <hr />
             <ul>                        
                 <li><b>Magnitude:</b> ${feature.properties.mag}</li>
